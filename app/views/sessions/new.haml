@@ -1,0 +1,19 @@
+#login_form_container.container
+  .row
+    .col-xs-12
+      %h1.logo
+        %span.build Build
+        %span.onfly Onfly
+  .row.login-box
+    .col-xs-12.well.wll-lg
+      %h3 Log in
+      = form_tag sessions_path do
+        - if alert
+          %p.alert.alert-danger= alert
+        .form-group
+          %label(for="email") Email Address
+          %input.form-control(type="email" name="email" placeholder="Enter email")
+        .form-group
+          %label(for="password") Password
+          %input.form-control(type="password" name="password" placeholder="Enter password")
+        %button.btn.btn-primary(type="submit") Login
