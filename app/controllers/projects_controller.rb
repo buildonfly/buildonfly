@@ -3,6 +3,10 @@ class ProjectsController < ApplicationController
   def new
   end
 
+  def show
+
+  end
+
   def create
     project = Project.new(name: params[:name], git_url: params[:git_url])
     if project.save
