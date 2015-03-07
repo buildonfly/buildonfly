@@ -5,5 +5,6 @@ class Project < ActiveRecord::Base
 
   validates_presence_of :name
   validates_presence_of :git_url
-  validates_presence_of :commands
+  validates_uniqueness_of :name
+  validates_uniqueness_of :git_url
 end
