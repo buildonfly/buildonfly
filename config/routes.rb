@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  root 'home#index'
+
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
 
-  get 'users/new'
+  get 'signup' => 'signup#new'
+  post 'signup' => 'signup#create', as: 'signup_create'
+
   resources :sessions
 
   # The priority is based upon order of creation: first created -> highest priority.
