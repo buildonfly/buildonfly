@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   resources :sessions
   resources :projects do
     resources :builds, only: [:index]
+    resources :machines, only: [:index]
   end
 
+  post 'machines/:id/setup' => 'machines#setup'
+  get 'machines/:id/status' => 'machines#status'
   post 'activate_machine' => 'callback#activate_machine'
 
   # The priority is based upon order of creation: first created -> highest priority.

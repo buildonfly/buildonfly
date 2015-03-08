@@ -12,4 +12,8 @@ class Project < ActiveRecord::Base
   def primary_machine
     machines.select{|m| m.is_primary==1}.first
   end
+
+  def any_inactive_machine?
+    machines.select{|m| m.status!='active'}.any?
+  end
 end

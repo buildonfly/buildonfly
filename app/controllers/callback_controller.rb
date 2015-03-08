@@ -4,7 +4,7 @@ class CallbackController < ApplicationController
 
   def activate_machine
     machine = Machine.find(params[:id])
-    machine.active = 1
+    machine.status = params[:status]
     machine.save
     render json: {}.to_json
   end
