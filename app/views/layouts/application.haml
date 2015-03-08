@@ -7,6 +7,12 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true 
     = csrf_meta_tags
   %body
+  - if params[:controller] == "sessions" || params[:controller] == "signup"
+    .container
+      .row
+        .col-xs-12
+          = yield
+  - else
     %nav.navbar.navbar-default.navbar-fixed-top
       .container-fluid
         .navbar-header

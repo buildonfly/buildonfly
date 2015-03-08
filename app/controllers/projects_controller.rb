@@ -6,7 +6,11 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     if @user.projects.include? @project
-      render :show
+      if @project.primary_machine.is_active?
+        render :show
+      else
+        render :bootstrapping
+      end
     else
       render :file => "public/401.html", :status => :unauthorized
     end
@@ -17,7 +21,8 @@ class ProjectsController < ApplicationController
     if project.save
       ProjectAssignment.create(project: project, user: @user, assignment_type: 'a')
       free_machine = FreeMachine.first
-      project.machines.create(address: free_machine.address, is_primary: 1)
+      machine = project.machines.create(address: free_machine.address, is_primary: 1)
+      machine.setup
       free_machine.delete
     else
       flash.now[:error] = 'System error'

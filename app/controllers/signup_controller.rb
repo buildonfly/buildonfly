@@ -17,7 +17,7 @@ class SignupController < ApplicationController
     end
 
     if flash.now[:error]
-      render 'new'
+      render :new
     else
       redirect_to root_url
     end
